@@ -13,4 +13,5 @@
 
 Metacharacter | What does it do? | Example
 ------------- | ---------------- | -------
-. | Matches any one character, except newline. | '/h.t/' matches "hat", "hot", and "hit". But it does not match "heat"
+. | Matches any one character, except newline. | `/h.t/` matches "hat", "hot", and "hit". But it does not match "heat".
+\ | Escapes the next character. Only for metacharacters Allows use of metacharacters as literal characters. | `/9\.00/` matches "9.00", but not "9500" or "9-00".

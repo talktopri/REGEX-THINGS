@@ -106,3 +106,31 @@ Class| Meaning | Equivalent
 [:graph:] | Printable characters, no spaces |
 [:cntrl:] | Control characters (non-printable) |
 [:xdigit:] | Hexadecimal characters | A-Fa-f0-9
+
+
+### Repetition metacharacters
+
+Metacharacter | Meaning
+------------- | -------
+`*` | Preceding item appears zero or more times
+`+` | Preceding item appears one or more times
+`?` | Preceding item appears zero or one times
+
+Examples:
+
+- `/apples*/` matches "apple", "apples" and "applesssss".
+- `/apples+/` matches "apples" and "applesssss", but does not match "apple".
+- `/apples?/` matches "apple" and "apples", but does not match "applesssss".
+- `/\d\d\d*/` matches numbers with 3 digits or more. i.e: 123, 1234, 12345, 123456 ...
+
+### Quantified Repetition
+
+Use curly braces to create a repetition set: {min,max}. A minimum value is **always** required and it can be equal to 0. A maximum value is not required, as it can be infinite.
+
+Examples:
+
+- `\d{4,8}` matches numbers with four to eight digits.
+- `\d{4}` matches numbers with four digits only.
+- `\d{4,}` matches numbers with four or more digits.
+- `\w{5}\s` matches 5 word characters followed by a whitespace character.
+- `\d{3}-\d{3}-\d{4}` would match phone numbers like 555-867-5309.

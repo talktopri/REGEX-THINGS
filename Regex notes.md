@@ -86,3 +86,13 @@ Ex:
 :exclamation: Attention: `/[^\d\s]/` is **not** the same as `[\D\S]`:
   - `/[^\d\s]/` means not a digit NOR not a whitespace character. The whole set is negated.
   - `[\D\S]` means EITHER not a digit OR NOT a whitespace character.  
+
+### POSIX
+
+These expressions are not as used as REGEX, but could be useful. You never know :shrug:
+
+Class| Meaning | Equivalent
+------------- | ---------------- | -------
+[:alpha:] | Alphabetic characters | A-Za-z
+[:digit:] | Numeric characters | 0-9
+[]

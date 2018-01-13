@@ -37,7 +37,7 @@ Metacharacter | What does it do? | Example
 ### Metacharacters inside character sets
 
 Most metacharacters are already escaped when they are inside a character set:
-- /h[abc.xyz]t/ matches `hat` and `h.t`, but does not match `hot`, because the `.` character is **not** a metacharacter. Since the `.` is inside the set, it is automatically escaped (ignored).
+- `/h[abc.xyz]t/` matches `hat` and `h.t`, but does not match `hot`, because the `.` character is **not** a metacharacter. Since the `.` is inside the set, it is automatically escaped (ignored).
 
 **Exceptions:**
 
@@ -45,7 +45,8 @@ These characters need to be escaped manually:
 - `]`: Closing square bracket only. (The opening square bracket is escaped automatically when found inside of a set).
 - `-`: Dash, or range metacharacter.
 - `^`: Caret
-- `\`: Back slash. This gets tricky, because this is the metacharacter used to escape other metacharacters including itself. So, in order to escape `\`, I'd need to use a second `\`, like this: `\\` :scream:
+- `\`: Back slash. This gets tricky, because this is the metacharacter used to escape other metacharacters including itself. So, in order to escape `\`, I'd need to use a second `\`, like this: `\\` :scream:  
+
 Ex: Write a regular expression to match `file01 file-1 file\1 file_1`
 
 Answer: `/file[0\-\\_]1/`
@@ -95,4 +96,13 @@ Class| Meaning | Equivalent
 ------------- | ---------------- | -------
 [:alpha:] | Alphabetic characters | A-Za-z
 [:digit:] | Numeric characters | 0-9
-[]
+[:alnum:] | Alphanumeric characters | A-Za_z0-9
+[:lower:] | Lowercase alphabetic characters | a-z
+[:upper:] | Uppercase alphabetic characters | A-Z
+[:punct:] | Punctuation characters |
+[:space:] | Space characters | \s
+[:blank:] | Blank characters (space, tab) |
+[:print:] | Printable characters, spaces |
+[:graph:] | Printable characters, no spaces |
+[:cntrl:] | Control characters (non-printable) |
+[:xdigit:] | Hexadecimal characters | A-Fa-f0-9

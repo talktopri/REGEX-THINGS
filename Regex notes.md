@@ -166,5 +166,5 @@ Metacharacter | Meaning
 
 Examples:
 
-- ``/apples??/`: The first `?` means that this expression will match "apple" or "apples" (0 or 1 character). However, because regular expressions are greedy, one `?` means it prefers to return "apples".
+- `/apples??/`: The first `?` means that this expression will match "apple" or "apples" (0 or 1 character). However, because regular expressions are greedy, one `?` means it prefers to return "apples".
 The second `?` will tell the expression to be lazy and return zero `s`, matching, therefore, "apple".

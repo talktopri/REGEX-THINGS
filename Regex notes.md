@@ -7,13 +7,14 @@
 - Regular Expressions is a formal language interpreted by a regular expression process.
   - It is used for matching, searching, and replacing text.
 - Regex is case sensitive.
+- Regular Expressions are eager and greedy. See respective sections below.
 - It is not a programming language. It is a text manipulation tool, which helps return text only. Therefore, working with numbers can be tricky. See the `[50-99]` example below.
 - Metacharacters inside character sets are usually treated as literals (already escaped). There is no need to escape them again. They no longer have their metacharacter meaning. Ex: `/h[abc.xyz]t/` matches "hat" and "h.t", but does not match "hot" because the `.` within the set is not a wildcard.
   - Exceptions: `]`, `-`, `^`, and `\`. These characters need to be escaped within a character set
 
 ----
 
-### Metacharacters
+## Metacharacters
 
 Metacharacter | What does it do? | Example
 ------------- | ---------------- | -------
@@ -23,7 +24,7 @@ Metacharacter | What does it do? | Example
 `-`| Matches all characters that are between two characters. Only works while within a set `[]`. Outside of a set, it is only a literal dash. | `/[0-9]/` matches 0 through 9. `/[A-Za-z]/` matches the alphabet in lower and upper case. However, `/[50-99]/` does not match the number from 50-99. Regex looks at text only. This will, therefore, only match the numbers between 0 and 9.
 `^` | Matches any one character that **is not** in the set. | `/[^A-Z0-9]/` would match anything that **does not** contain upper case letter and **does not** contain numbers. So only text in lower case, spaces and especial characters would be found. Another example: `/see[^mn]/` would match `see `, but it would not match `seen`, `see`(without the space at the end) and `seem`.
 
-----
+
 
 ### Special Characters
 
@@ -58,7 +59,7 @@ Explanation by parts:
 
 ----
 
-### Shorthand Character sets
+## Shorthand Character sets
 
 Shorthand | Meaning | Equivalent
 ------------- | ---------------- | -------
@@ -107,8 +108,9 @@ Class| Meaning | Equivalent
 [:cntrl:] | Control characters (non-printable) |
 [:xdigit:] | Hexadecimal characters | A-Fa-f0-9
 
+----
 
-### Repetition metacharacters
+## Repetition metacharacters
 
 Metacharacter | Meaning
 ------------- | -------
@@ -134,3 +136,35 @@ Examples:
 - `\d{4,}` matches numbers with four or more digits.
 - `\w{5}\s` matches 5 word characters followed by a whitespace character.
 - `\d{3}-\d{3}-\d{4}` would match phone numbers like 555-867-5309.
+
+### Greedy Expressions
+
+Match as much as possible before giving control to the next expression part.
+
+Examples:
+
+- `/.+\.jpg/` matches "filename.jpg"
+  - The `+` is greedy, but "gives back" the `.jpg` to make the match.
+  - Think of it as rewinding or backtracking.
+- `/.*[0-9]+/` matches "Page 266".
+  - `/.*/` matches "Page 26" while `/[0-9]+/` matches "6".
+
+### Lazy Expressions
+
+Match as little as possible before giving control to the next expression part.
+
+Metacharacter | Meaning
+------------- | -------
+? | Makes preceding quantifier lazy (could match 0 characters or 1 character)
+
+**Syntax:**
+
+- *?
+- +?
+- {min,max}?
+- ??
+
+Examples:
+
+- ``/apples??/`: The first `?` means that this expression will match "apple" or "apples" (0 or 1 character). However, because regular expressions are greedy, one `?` means it prefers to return "apples".
+The second `?` will tell the expression to be lazy and return zero `s`, matching, therefore, "apple".
